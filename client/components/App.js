@@ -5,7 +5,9 @@ var App = () => (
       <VideoPlayer/>
     </div>
     <div className="col-md-5">
-      <VideoList/>
+      <VideoList videoCollection = {window.exampleVideoData}/>
     </div>
   </div>
 );
+
+ReactDOM.render(<App />, document.getElementById('app'));
