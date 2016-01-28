@@ -19,19 +19,19 @@ class App extends React.Component {
                   currentVideo: window.exampleVideoData[0]};
   }
 
-  handleClick() {
-    this.setState({currentVideo: window.exampleVideoData[1]})
-    console.log('success!')
+  handleClick(clickedVideo) {
+    this.setState({currentVideo: clickedVideo})
+    console.log(this);
   }
   render() {
     return (
       <div>
         <Nav />
         <div className="col-md-7">
-          <VideoPlayer  curState = {this.state}/>
+          <VideoPlayer  currentVideo = {this.state.currentVideo}/>
         </div>
         <div className="col-md-5">
-          <VideoList onClick={this.handleClick.bind(this)} curState = {this.state}/>
+          <VideoList onClick={this.handleClick.bind(this)} videoCollection = {this.state.videoCollection}/>
         </div>
       </div>);
   }  
