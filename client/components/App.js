@@ -1,16 +1,3 @@
-{/*var App = () => (
-  <div>
-    <Nav />
-    <div className="col-md-7">
-      <VideoPlayer currentVideo = {window.exampleVideoData[0]}/>
-    </div>
-    <div className="col-md-5">
-      <VideoList videoCollection = {window.exampleVideoData}/>
-    </div>
-  </div>
-);
-
-ReactDOM.render(<App />, document.getElementById('app'));*/}
 window.searchYouTube(window.options, function(data){
   window.dataStorage = data.items;
 });
@@ -39,6 +26,4 @@ class App extends React.Component {
   }  
 }
 
-
-//window.app = new App();
-setTimeout(function(){ReactDOM.render(<App />, document.getElementById('app'))}, 4000);
+ReactDOM.render(<App />, document.getElementById('app'))
