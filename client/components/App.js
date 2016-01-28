@@ -1,17 +1,23 @@
-window.searchYouTube(window.options, function(data){
-  window.dataStorage = data.items;
-});
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {videoCollection: window.dataStorage,
-                  currentVideo: window.dataStorage[0]};
+    this.state = {videoCollection: window.exampleVideoData,
+                  currentVideo: window.exampleVideoData[0]};
   }
 
   handleClick(clickedVideo) {
     this.setState({currentVideo: clickedVideo})
-    console.log(this);
   }
+
+  componentDidMount() {
+    window.options = {query: 'dogs',max: 5,key: window.YOUTUBE_API_KEY};
+    var newCallback = (data) => {
+      this.setState({videoCollection: data.items,
+                   currentVideo: data.items[0]});  
+    };
+    window.searchYouTube(window.options, newCallback);
+    };
+
   render() {
     return (
       <div>
@@ -24,6 +30,7 @@ class App extends React.Component {
         </div>
       </div>);
   }  
+
 }
 
 ReactDOM.render(<App />, document.getElementById('app'))

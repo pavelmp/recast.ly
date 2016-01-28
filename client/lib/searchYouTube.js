@@ -4,10 +4,7 @@ var searchYouTube = (options, callback) => {
     url: 'https://www.googleapis.com/youtube/v3/search?q='+ options.query + '&part=snippet&maxResults=' + options.max + '&videoEmbeddable=true&type=video&key=' + options.key,
     type: 'GET',
     contentType: 'application/json',
-    success: function (data) {
-      callback(data);
-      // callback(data);
-    },
+    success: callback,
     error: function (data) {
       // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
       console.log(data);
@@ -16,10 +13,3 @@ var searchYouTube = (options, callback) => {
 };
 
 window.searchYouTube = searchYouTube;
-
-
-window.options = {
-  query: 'dogs',
-  max: 5,
-  key: window.YOUTUBE_API_KEY
-}
