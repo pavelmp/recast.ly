@@ -1,3 +1,5 @@
+window.options = {query: 'dogs',max: 5,key: window.YOUTUBE_API_KEY};
+
 class App extends React.Component {
   constructor() {
     super();
@@ -10,12 +12,11 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    window.options = {query: 'dogs',max: 5,key: window.YOUTUBE_API_KEY};
-    var newCallback = (data) => {
+    window.newCallback = (data) => {
       this.setState({videoCollection: data.items,
                    currentVideo: data.items[0]});  
     };
-    window.searchYouTube(window.options, newCallback);
+    window.searchYouTube(window.options, window.newCallback);
     };
 
   render() {
@@ -34,3 +35,4 @@ class App extends React.Component {
 }
 
 ReactDOM.render(<App />, document.getElementById('app'))
+

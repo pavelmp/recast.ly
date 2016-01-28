@@ -6,7 +6,6 @@ var searchYouTube = (options, callback) => {
     contentType: 'application/json',
     success: callback,
     error: function (data) {
-      // See: https://developer.mozilla.org/en-US/docs/Web/API/console.error
       console.log(data);
     }
   });
