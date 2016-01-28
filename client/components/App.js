@@ -11,12 +11,14 @@
 );
 
 ReactDOM.render(<App />, document.getElementById('app'));*/}
-
+window.searchYouTube(window.options, function(data){
+  window.dataStorage = data.items;
+});
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {videoCollection: window.exampleVideoData,
-                  currentVideo: window.exampleVideoData[0]};
+    this.state = {videoCollection: window.dataStorage,
+                  currentVideo: window.dataStorage[0]};
   }
 
   handleClick(clickedVideo) {
@@ -37,5 +39,6 @@ class App extends React.Component {
   }  
 }
 
+
 //window.app = new App();
-ReactDOM.render(<App />, document.getElementById('app'));
+setTimeout(function(){ReactDOM.render(<App />, document.getElementById('app'))}, 4000);
