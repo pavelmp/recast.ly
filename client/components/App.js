@@ -1,33 +1,34 @@
-window.options = {query: 'dogs',max: 5,key: window.YOUTUBE_API_KEY};
-
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {videoCollection: window.exampleVideoData,
-                  currentVideo: window.exampleVideoData[0]};
+    this.state = {videoCollection: exampleVideoData, currentVideo: exampleVideoData[0]};
   }
 
-  handleClick(clickedVideo) {
-    this.setState({currentVideo: clickedVideo})
+  handleClick(video) {
+    this.setState({currentVideo: video});
+  }
+
+  newState(data) {
+    this.setState({currentVideo: data.items[0], videoCollection: data.items})
+  };
+  
+  updateVideos(query) {
+    searchYouTube({query:query, key: window.YOUTUBE_API_KEY, max: 10},this.newState.bind(this));
   }
 
   componentDidMount() {
-    window.newCallback = (data) => {
-      this.setState({videoCollection: data.items,
-                   currentVideo: data.items[0]});  
-    };
-    window.searchYouTube(window.options, window.newCallback);
-    };
+    searchYouTube({query:'dogs', key: window.YOUTUBE_API_KEY, max: 10},this.newState.bind(this));
+  }
 
   render() {
     return (
       <div>
-        <Nav />
+        <Nav onKey = {this.updateVideos.bind(this)}/>
         <div className="col-md-7">
-          <VideoPlayer  currentVideo = {this.state.currentVideo}/>
+          <VideoPlayer video = {this.state.currentVideo}/>
         </div>
         <div className="col-md-5">
-          <VideoList onClick={this.handleClick.bind(this)} videoCollection = {this.state.videoCollection}/>
+          <VideoList onClick={this.handleClick.bind(this)} videos = {this.state.videoCollection}/>
         </div>
       </div>);
   }  

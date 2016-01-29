@@ -1,14 +1,8 @@
-var VideoList = (props) => (
+var VideoList = ({onClick, videos}) => (
   <div className="video-list media">
-    <VideoListEntry onClick={props.onClick.bind(this)} video = {props.videoCollection[0]}/>
-    <VideoListEntry onClick={props.onClick.bind(this)} video = {props.videoCollection[1]}/>
-    <VideoListEntry onClick={props.onClick.bind(this)} video = {props.videoCollection[2]}/>
-    <VideoListEntry onClick={props.onClick.bind(this)} video = {props.videoCollection[3]}/>
-    <VideoListEntry onClick={props.onClick.bind(this)} video = {props.videoCollection[4]}/>
-    {/*<VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />
-    <VideoListEntry />*/}
+    {videos.map((video) => {
+        return <VideoListEntry onClick = {onClick} video = {video} key = {video.etag}/>    
+    })}
   </div>
 );
 
